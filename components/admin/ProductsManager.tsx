@@ -41,7 +41,7 @@ export default function ProductsManager({ initial }: { initial: Product[] }) {
       (p) =>
         (!s || p.name.toLowerCase().includes(s) || p.hash.toLowerCase().includes(s)) &&
         (!cat || p.category === cat) &&
-        (!discount || p.off >= discount && p.off < String(Number(discount) + 10))
+        (!discount || p.off >= discount && p.off < String(Number(discount) + 5))
     );
   }, [list, q, cat, discount]);
 
@@ -145,19 +145,28 @@ export default function ProductsManager({ initial }: { initial: Product[] }) {
           <option value="">select discount</option>
           {/* {discounts.map((d) => ( */}
             <option key="50" value="50">
-              50% to 60% off
+              50% to 55% off
+            </option>
+            <option key="55" value="55">
+              55% to 60% off
             </option>
             <option key="60" value="60">
-              60% to 70% off
+              60% to 65% off
+            </option>
+            <option key="65" value="65">
+              65% to 70% off
             </option>
             <option key="70" value="70">
-              70% to 80% off
+              70% to 75% off
+            </option>
+            <option key="75" value="75">
+              75% to 80% off
             </option>
             <option key="80" value="80">
-              80% to 90% off
+              80% to 85% off
             </option>
-            <option key="90" value="90">
-              90% to 100% off
+            <option key="85" value="85">
+              85% to 90% off
             </option>
           {/* ))} */}
         </select>
