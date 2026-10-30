@@ -153,7 +153,7 @@ export default async function ProductPage({ params }: { params: { hash: string }
       <div className="mt-2 flex items-center justify-between px-2 py-4" style={{ background: "#eaf1ff" }}>
         <TrustItem label="Lowest Price" icon={<PriceIco />} />
         <span className="w-px h-8 bg-[#cdd8ef]" />
-        <TrustItem label="Cash on Delivery" icon={<CodIco />} />
+        <TrustItem label="Fast Delivery" icon={<FastDeliveryIcon />} />
         <span className="w-px h-8 bg-[#cdd8ef]" />
         <TrustItem label="7-day Returns" icon={<ReturnIco />} />
       </div>
@@ -240,13 +240,44 @@ function PriceIco() {
     </svg>
   );
 }
-function CodIco() {
+// function CodIco() {
+//   return (
+//     <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+//       <circle cx="16" cy="16" r="13" fill="#DDE8FF" />
+//       <rect x="8" y="12" width="16" height="9" rx="1.5" fill="#038d63" />
+//       <circle cx="16" cy="16.5" r="2.4" fill="#fff" />
+//       <text x="16" y="18.2" fontSize="3.6" fontWeight="bold" textAnchor="middle" fill="#038d63">₹</text>
+//     </svg>
+//   );
+// }
+function FastDeliveryIcon() {
   return (
     <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
       <circle cx="16" cy="16" r="13" fill="#DDE8FF" />
-      <rect x="8" y="12" width="16" height="9" rx="1.5" fill="#038d63" />
-      <circle cx="16" cy="16.5" r="2.4" fill="#fff" />
-      <text x="16" y="18.2" fontSize="3.6" fontWeight="bold" textAnchor="middle" fill="#038d63">₹</text>
+
+      {/* Speed lines */}
+      <path
+        d="M5 12H11 M4 16H9 M6 20H11"
+        stroke="#038d63"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+
+      {/* Truck body */}
+      <rect x="11" y="12" width="11" height="8" rx="1.2" fill="#038d63" />
+
+      {/* Truck cabin */}
+      <path
+        d="M22 14H25L28 17V20H22V14Z"
+        fill="#038d63"
+      />
+
+      {/* Window */}
+      <path d="M23.5 15.5H24.5L26.2 17.5H23.5V15.5Z" fill="#DDE8FF" />
+
+      {/* Wheels */}
+      <circle cx="15" cy="21" r="2" fill="#038d63" stroke="#fff" strokeWidth="1" />
+      <circle cx="25" cy="21" r="2" fill="#038d63" stroke="#fff" strokeWidth="1" />
     </svg>
   );
 }
