@@ -34,22 +34,24 @@ export interface RatingSummary {
   reviewCount: number;
   buckets: { label: string; count: number; pct: number; color: string }[];
   reviews: Review[];
+  // totalRatings: number;
 }
 
 export function buildRatings(seed: string, productImage: string): RatingSummary {
+  // console.log("buildRatings called with seed:", seed, "and productImage:", productImage);
   const rnd = seededRandom(seed);
   const int = (min: number, max: number) => Math.floor(rnd() * (max - min + 1)) + min;
 
   const average = (rnd() * (5 - 4) + 4).toFixed(1);
-  const ratingCount = int(100, 1000);
-  const reviewCount = int(100, 500);
+  // const ratingCount = int(100, 1000);
+  // const reviewCount = int(100, 500);
 
   const ratings = {
-    poor: int(50, 100),
-    average: int(100, 500),
-    good: int(200, 800),
-    veryGood: int(300, 400),
-    excellent: int(400, 999),
+    poor: int(10, 50),
+    average: int(10, 50),
+    good: int(50, 100),
+    veryGood: int(100, 150),
+    excellent: int(150, 250),
   };
   // Displayed top-to-bottom Excellent → Poor, colored by level. Bar width is
   // the bucket's share of ALL ratings (the reference divides by the total, not
@@ -61,6 +63,9 @@ export function buildRatings(seed: string, productImage: string): RatingSummary 
     { label: "Average", count: ratings.average, color: "#f47e2c" },
     { label: "Poor", count: ratings.poor, color: "#e0402c" },
   ];
+  const ratingCount = rows.reduce((a, r) => a + r.count, 0);
+  const reviewCount = int(100, ratingCount);
+  // console.log("Total Ratings:", totalRatings);
   const total = rows.reduce((a, r) => a + r.count, 0);
   const buckets = rows.map((b) => ({ ...b, pct: (b.count / total) * 100 }));
 
@@ -75,3 +80,16 @@ export function buildRatings(seed: string, productImage: string): RatingSummary 
 
   return { average, ratingCount, reviewCount, buckets, reviews };
 }
+// export function totalRatings () {
+//   const rnd = seededRandom(seed);
+//   const int = (min: number, max: number) => Math.floor(rnd() * (max - min + 1)) + min;
+//   const ratings = {
+//     poor: int(10, 50),
+//     average: int(10, 50),
+//     good: int(50, 100),
+//     veryGood: int(100, 150),
+//     excellent: int(150, 250),
+//   };
+//   const totalRatings = Object.values(ratings).reduce((a, b) => a + b, 0);
+//   return totalRatings;
+// }

@@ -11,6 +11,7 @@ import TrustedLogo from "@/components/TrustedLogo";
 import ReviewsSection from "./ReviewsSection";
 import ForYouSection from "./ForYouSection";
 
+
 // ISR: rendered once, served from the CDN for 1 hour. Admin edits (price,
 // images, position) are visible instantly via /api/revalidate while shoppers
 // never wait on the database. The shell below only depends on the single
@@ -45,7 +46,9 @@ export default async function ProductPage({ params }: { params: { hash: string }
 
   // Small independent rating pair for the top row (separate from reviews block).
   const tr = seededRandom("top:" + product.hash);
-  const topRatings = 100 + Math.floor(tr() * 900);
+  // const topRatings = 100 + Math.floor(tr() * 900);
+  // const topRatings = Ratingsummur.RatingCount ;
+  // const topReviews = 10 + Math.floor(tr() * 50);
   const topReviews = 10 + Math.floor(tr() * 50);
   const topStar = Math.floor(Number(ratings.average));
 
@@ -114,11 +117,13 @@ export default async function ProductPage({ params }: { params: { hash: string }
         {/* Rating row */}
         <div className="flex items-center gap-2 mt-3">
           <span className="inline-flex items-center gap-1 bg-[#038d63] text-white text-[13px] font-semibold px-2 py-0.5 rounded">
-            {topStar}
+            {/* {topStar} */}
+            {ratings.average}
             <Star />
           </span>
           <span className="text-[12px] text-[#8b8ba3]">
-            {topRatings} ratings and {topReviews} reviews
+            {/* {topRatings} ratings and {topReviews} reviews */}
+            {ratings.ratingCount} ratings and {ratings.reviewCount} reviews
           </span>
           <span className="w-1 h-1 rounded-full bg-[#c9c9d1]" />
           {/* Trusted pill — same pink pill as the reference's trusted-badge-mini */}

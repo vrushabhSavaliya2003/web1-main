@@ -6,6 +6,7 @@ import AddToCartBar from "./AddToCartBar";
 import OfferBanner from "./OfferBanner";
 import { formatPrice, seededRandom } from "@/lib/data";
 
+
 const SIZES = ["S", "M", "L", "XL", "XXL", "XXXL"];
 const storeNames = [
   "SHK Enterprises",
@@ -28,8 +29,8 @@ const storeNames = [
 export default function ProductPurchase({ product }: { product: Product }) {
   const [size, setSize] = useState("S");
    const rnd = seededRandom(product.hash);
-  const Ratingcount = Math.floor(rnd() * 600) + 100;
-  const productCount = Math.floor(rnd() * 50) + 10;
+  const Ratingcount = Math.floor(rnd() * 300) + 100;
+  const productCount = Math.floor(rnd() * 40) + 10;
   const [storeName, setStoreName] = useState("");
   useEffect(() => {
     const randomIndex = Math.floor(

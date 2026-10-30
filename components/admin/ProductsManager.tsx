@@ -19,6 +19,7 @@ export default function ProductsManager({ initial }: { initial: Product[] }) {
   const [list, setList] = useState<Product[]>(initial);
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("");
+  const [discount, setDiscount] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState("");
 
@@ -29,15 +30,20 @@ export default function ProductsManager({ initial }: { initial: Product[] }) {
     () => Array.from(new Set(initial.map((p) => p.category).filter(Boolean))).sort(),
     [initial]
   );
+  const discounts = useMemo(
+    () => Array.from(new Set(initial.map((p) => p.off).filter(Boolean))).sort(),
+    [initial]
+  );
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
     return list.filter(
       (p) =>
         (!s || p.name.toLowerCase().includes(s) || p.hash.toLowerCase().includes(s)) &&
-        (!cat || p.category === cat)
+        (!cat || p.category === cat) &&
+        (!discount || p.off >= discount && p.off < String(Number(discount) + 10))
     );
-  }, [list, q, cat]);
+  }, [list, q, cat, discount]);
 
   const total = list.length;
 
@@ -130,6 +136,30 @@ export default function ProductsManager({ initial }: { initial: Product[] }) {
               {c}
             </option>
           ))}
+        </select>
+        <select
+          value={discount}
+          onChange={(e) => setDiscount(e.target.value)}
+          className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-gray-900"
+        >
+          <option value="">select discount</option>
+          {/* {discounts.map((d) => ( */}
+            <option key="50" value="50">
+              50% to 60% off
+            </option>
+            <option key="60" value="60">
+              60% to 70% off
+            </option>
+            <option key="70" value="70">
+              70% to 80% off
+            </option>
+            <option key="80" value="80">
+              80% to 90% off
+            </option>
+            <option key="90" value="90">
+              90% to 100% off
+            </option>
+          {/* ))} */}
         </select>
       </div>
 

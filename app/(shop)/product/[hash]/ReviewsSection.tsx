@@ -98,7 +98,7 @@ export default async function ReviewsSection({
             </div>
             <p className="text-[13px] mt-2 text-[#353543]">{r.text}</p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={r.image} alt="" width={48} height={48} className="w-12 h-12 object-cover rounded mt-2 bg-[#f7f7f9]" loading="lazy" decoding="async" />
+            {/* <img src={r.image} alt="" width={48} height={48} className="w-12 h-12 object-cover rounded mt-2 bg-[#f7f7f9]" loading="lazy" decoding="async" /> */}
             <p className="text-[13px] text-[#666] mt-2 flex items-center gap-1.5">
               {/* filled thumbs-up, matching the reference glyph */}
               <svg width="15" height="15" viewBox="0 0 16 16" fill="#666" aria-hidden>

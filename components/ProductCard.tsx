@@ -7,6 +7,7 @@ import { formatPrice, seededRandom } from "@/lib/data";
 import { useCountdown, fmtCountdown } from "@/lib/countdown";
 import TimerIcon from "./TimerIcon";
 import TrustedLogo from "./TrustedLogo";
+import { buildRatings } from "@/lib/reviews";
 
 /**
  * Self-contained countdown pill. Subscribes to the shared countdown context on
@@ -28,8 +29,13 @@ export default function ProductCard({ product, priority = false }: { product: Pr
 
   // Stable per-product rating + count (seeded so it never changes on re-render).
   const rnd = seededRandom(product.hash);
-  const rating = (rnd() * (5 - 4) + 4).toFixed(1);
-  const count = Math.floor(rnd() * 600) + 100;
+  // const rating = (rnd() * (5 - 4) + 4).toFixed(1);
+  const ratingCount = buildRatings(product.hash, product.image);
+  const rating = ratingCount.average;
+  const count = ratingCount.ratingCount;
+  // console .log("ProductCard: ratingCount:", ratingCount);
+  // console .log("ProductCard: rating:", rating, "count:", count);
+  // const count = Math.floor(rnd() * 600) + 100;
   // "Hot Sell" only on tiles with a great price difference (high discount %).
   const discountPct = product.mrp > 0 ? ((product.mrp - product.price) / product.mrp) * 100 : 0;
   const showHot = product.badge === "Hot Sell" || discountPct >= 80;

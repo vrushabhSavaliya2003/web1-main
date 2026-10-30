@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import type { Product } from "@/lib/types";
 import { formatPrice, seededRandom, specialOffer } from "@/lib/data";
 import TrustedLogo from "./TrustedLogo";
+import { buildRatings } from "@/lib/reviews";
 
 /**
  * Catalog card in the "offer pill + Free Delivery" style used on category
@@ -14,8 +15,11 @@ import TrustedLogo from "./TrustedLogo";
 export default function ProductCardOffer({ product }: { product: Product }) {
   const router = useRouter();
   const rnd = seededRandom(product.hash);
-  const rating = (rnd() * (5 - 4) + 4).toFixed(1);
-  const count = Math.floor(rnd() * 600) + 100;
+  const ratingCount = buildRatings(product.hash, product.image);
+  const rating = ratingCount.average;
+  const count = ratingCount.ratingCount;
+  // const rating = (rnd() * (5 - 4) + 4).toFixed(1);
+  // const count = Math.floor(rnd() * 600) + 100;
   const offer = specialOffer(product.hash, product.price);
 
   // Buy Now opens the product page (no direct add-to-cart).
