@@ -168,6 +168,12 @@ export default function ProductsManager({ initial }: { initial: Product[] }) {
             <option key="85" value="85">
               85% to 90% off
             </option>
+            <option key="90" value="90">
+              90% to 95% off
+            </option>
+            <option key="95" value="95">
+              95% to 100% off
+            </option>
           {/* ))} */}
         </select>
       </div>
