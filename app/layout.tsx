@@ -17,7 +17,7 @@ import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: `${brand.tagline} - ${brand.name}`,
-  description: `${brand.name} — mega sale on groceries, fashion, electronics and more.`,
+  description: `${brand.name} — on groceries, fashion, electronics and more.`,
 };
 
 export const viewport: Viewport = {
