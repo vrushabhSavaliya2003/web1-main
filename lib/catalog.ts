@@ -59,12 +59,12 @@ export const getCategories = cache((): Promise<Category[]> =>
 /** Fallback home content = exactly what the home page shows today. */
 export const DEFAULT_HOME_CONTENT: HomeContent = {
   banner1_url: "/banners/top.gif",
-  banner1_link: "/category/grocery",
+  banner1_link: "/category/women-fashion",
   banner1_alt: "Sale is live",
-  banner2_url: "/banners/hero.webp",
-  banner2_link: "/category/grocery",
+  banner2_url: "/banners/hero.png",
+  banner2_link: "/category",
   banner2_alt: "Mega Sale",
-  promo_text: "Get Upto 80% off on all products! Limited time offer.",
+  promo_text: "Get Upto 75% off on all products! Limited time offer.",
 };
 
 /** Home page content — banners + promo line. Hardcoded (the admin Home
