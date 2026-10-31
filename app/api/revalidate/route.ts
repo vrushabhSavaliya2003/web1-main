@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getAdminUser } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +17,7 @@ export async function POST() {
 
   revalidateTag("catalog");
   revalidateTag("settings");
+  revalidatePath("/home");
 
   return Response.json({ ok: true });
 }
