@@ -278,8 +278,8 @@ export default function ProductForm({
           </label>
 
           <label className={labelCls}>
-            Off (auto-filled, editable)
-            <input value={off} onChange={(e) => setOff(e.target.value)} placeholder="83% off" className={inputCls} />
+            Discount (calculated automatically)
+            <input value={off} readOnly placeholder="Calculated from MRP and price" className={inputCls} />
           </label>
 
           <label className={labelCls}>
